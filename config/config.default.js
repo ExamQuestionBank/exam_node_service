@@ -12,8 +12,22 @@ module.exports = appInfo => {
    **/
   const config = exports = {};
 
+  config.sequelize = {
+    dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+    database: 'TESTDB',
+    host: 'localhost',
+    port: '3306',
+    username: 'root',
+    password: '123456',
+  };
+
+  config.jwt = {
+    secret: '_123654_720',
+    enable: false,
+  };
+
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1593748973679_720';
+  config.keys = appInfo.name + '_123654_720';
 
   // add your middleware config here
   config.middleware = [];
