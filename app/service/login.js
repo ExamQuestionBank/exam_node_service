@@ -11,7 +11,7 @@ class LoginService extends Service {
   }
 
   async saveToken(data) {
-    await this.app.model.token.upsert(data);
+    await this.ctx.model.Token.upsert(data);
   }
 
   async findToken(access_token) {

@@ -41,7 +41,7 @@ module.exports = {
           const RefreshToken = await this.createToken({ id: TokenInfo.uid }, '7', 'days');
           const AccessToken = await this.createToken({ id: TokenInfo.uid }, '2', 'hours');
           const { ID, UID } = { ID: TokenInfo.id, UID: TokenInfo.uid };
-          await this.ctx.service.admin.login.saveToken({ ID, UID, AccessToken, RefreshToken });
+          await this.ctx.service.login.saveToken({ ID, UID, AccessToken, RefreshToken });
           await this.error(200, 11000, AccessToken);
         }
       } else {

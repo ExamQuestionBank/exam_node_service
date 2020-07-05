@@ -5,10 +5,11 @@ const { cryptoMd5 } = require('../extend/helper');
 
 class LoginController extends Controller {
   async userLogin() {
+    const { ctx } = this;
     const { username, password } = this.ctx.request.body;
     const keys = this.config.keys;
     let res = null;
-    const user = await this.ctx.service.login.findUsername(username);
+    const user = await ctx.service.login.findUserName(username);
     if (!user) {
       res = {
         code: 10000,
@@ -22,16 +23,23 @@ class LoginController extends Controller {
           message: '密码错误',
         };
       } else {
-        const refresh_token = await this.ctx.helper.createToken({ id: user.id }, '7', 'days');
-        const access_token = await this.ctx.helper.createToken({ id: user.id }, '2', 'hours');
+        const refresh_token = await ctx.helper.createToken({ id: user.id }, '7', 'days');
+        const access_token = await ctx.helper.createToken({ id: user.id }, '2', 'hours');
         const uid = user.id;
-        await this.ctx.service.admin.login.saveToken({ uid, access_token, refresh_token });
-        res = {
-          code: 200,
-          data: {
-            access_token,
-          },
-        };
+        try {
+          await this.ctx.service.login.saveToken({ uid, access_token, refresh_token });
+          res = {
+            code: 200,
+            data: {
+              access_token,
+            },
+          };
+        } catch (err) {
+          res = {
+            code: 10000,
+            message: err,
+          };
+        }
       }
     }
     this.ctx.body = res;
