@@ -38,4 +38,4 @@ class LoginController extends Controller {
   }
 }
 
-module.exprots = LoginController;
+module.exports = LoginController;

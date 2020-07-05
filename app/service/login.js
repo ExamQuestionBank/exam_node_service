@@ -4,18 +4,18 @@ const Service = require('egg').Service;
 
 class LoginService extends Service {
   async findUserName(username) {
-    const USER = await this.ctx.model.USER.findOne({
+    const USER = await this.ctx.model.User.findOne({
       where: { username },
     });
     return USER;
   }
 
   async saveToken(data) {
-    await this.app.model.SystemToken.upsert(data);
+    await this.app.model.token.upsert(data);
   }
 
   async findToken(access_token) {
-    const TOKENINFOR = await this.ctx.model.SystemToken.findOne({
+    const TOKENINFOR = await this.ctx.model.Token.findOne({
       where: {
         access_token,
       },

@@ -1,14 +1,15 @@
 'use strict';
-const uuidv1 = require('uuid/v1');
 
-function generateUUID() {
-  return uuidv1().replace(/-/g, '');
-}
 
 function defineModel(app, name, attributes) {
-  const { UUID } = app.Sequelize;
+  const { INTEGER } = app.Sequelize;
 
   const attrs = {};
+  attrs.id = {
+    type: INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  };
   for (const key in attributes) {
     const value = attributes[key];
     if (typeof value === 'object' && value.type) {
@@ -22,16 +23,9 @@ function defineModel(app, name, attributes) {
     }
   }
 
-  attrs.id = {
-    type: UUID,
-    primaryKey: true,
-    defaultValue: () => {
-      return generateUUID();
-    },
-  };
 
   return app.model.define(name, attrs, {
-    created_at: 'created_a',
+    created_at: 'created_at',
     updated_at: 'updated_at',
     version: true,
     freezeTableName: true, // Model 对应的表名将与model名相同,不会变为复数

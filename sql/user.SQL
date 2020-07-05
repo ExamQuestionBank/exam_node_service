@@ -1,12 +1,15 @@
 
 use TESTDB;
 
-create table tb_admin (
+create table tb_user (
   id int(10) not null auto_increment,
-  username varchar(40) default null comment '用户名',
-  password varchar(32) default null comment '密码',
+  username varchar(100) default null comment '用户名',
+  password varchar(100) default null comment '密码',
+  created_at datetime DEFAULT null COMMENT 'created time',
+  updated_at datetime DEFAULT null COMMENT 'updated time',
+  version varchar(100) default null comment 'version',
   primary key (id)
-)engine=InnoDB AUTO_INCREMENT=1 comment '管理员表';
+)engine=InnoDB AUTO_INCREMENT=1 comment '用户表';
 
-insert into tb_admin(username,password)
+insert into tb_user(username,password)
 value('admin','123456');
