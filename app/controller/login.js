@@ -29,9 +29,11 @@ class LoginController extends Controller {
         try {
           await this.ctx.service.login.saveToken({ uid, access_token, refresh_token });
           res = {
+            status: 'ok',
             code: 200,
             data: {
               access_token,
+              username: user.username,
             },
           };
         } catch (err) {

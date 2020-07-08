@@ -10,7 +10,7 @@ module.exports = {
 
   getAccessToken() {
     const BearerToken = this.ctx.request.header.authorization;
-    return BearerToken && BearerToken.replace('Bearer', '');
+    return BearerToken && BearerToken.replace('Bearer ', '');
   },
 
   async verifyToken() {

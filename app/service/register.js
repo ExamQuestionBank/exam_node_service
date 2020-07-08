@@ -10,7 +10,6 @@ class RegisterService extends Service {
     const { username, password } = options;
     const keys = this.config.keys;
     let results = null;
-    ctx.coreLogger.info('111111111');
     await ctx.model.User.findOne({
       where: {
         username, // 查询条件
