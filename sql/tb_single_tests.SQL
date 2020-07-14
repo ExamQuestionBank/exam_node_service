@@ -5,7 +5,7 @@ create table tb_single_tests (
   id int(10) not null auto_increment,
   subject varchar(40) default null comment '科目',
   test_year varchar(40) default null comment '年份',
-  test_form varchar(100) default null comment '来源',
+  test_from varchar(100) default null comment '来源',
   test_no varchar(100) default null comment '试题编号',
   question text default null comment '题目问题',
   answer_a text default null comment '答案a',

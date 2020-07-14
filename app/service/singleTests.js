@@ -6,7 +6,14 @@ class SingleTestsService extends Service {
   async saveOrUpdate(data) {
     let res = null;
     try {
-      res = await this.ctx.model.SingleTests.upsert(data);
+      if (data.id) {
+        res = await this.ctx.model.SingleTests.update(data, {
+          where: {
+            id: Number(data.id),
+          } });
+      } else {
+        res = await this.ctx.model.SingleTests.upsert(data);
+      }
     } catch (err) {
       res = err;
     }
@@ -49,13 +56,13 @@ class SingleTestsService extends Service {
     return res;
   }
 
-  async getSingleTest(params) {
+  async getSingleTests(params) {
     const { ctx } = this;
     let res = [];
-    const { currentPage = 1, pageSize = 10 } = params;
-    await ctx.model.Article.findAndCountAll({
+    const { current = 1, pageSize = 10 } = params;
+    await ctx.model.SingleTests.findAndCountAll({
       limit: pageSize,
-      offset: pageSize * (currentPage - 1),
+      offset: pageSize * (current - 1),
     }).then(result => {
       res = result;
     }).catch(err => {
