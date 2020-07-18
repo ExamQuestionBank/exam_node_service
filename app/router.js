@@ -11,4 +11,5 @@ module.exports = async app => {
   router.post('/api/user/login', controller.login.userLogin);
   router.post('/api/singleTests/saveOrUpdate', IsLogin, controller.singleTests.saveOrUpdate);
   router.post('/api/singleTests/getSingleTests', IsLogin, controller.singleTests.getSingleTests);
+  router.post('/api/singleTests/deleteTests', IsLogin, controller.singleTests.deleteSingleTests);
 };

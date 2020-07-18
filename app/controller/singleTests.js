@@ -1,7 +1,6 @@
 'use strict';
 
 const Controller = require('egg').Controller;
-// const humps = require('humps');
 
 class SingleTestsController extends Controller {
 
@@ -30,6 +29,20 @@ class SingleTestsController extends Controller {
         success: true,
       };
 
+    } catch (err) {
+      res = {
+        status: 'error',
+        message: err,
+      };
+    }
+    this.ctx.body = res;
+  }
+
+  async deleteSingleTests() {
+    let res = null;
+    const data = this.ctx.request.body;
+    try {
+      res = await this.ctx.service.singleTests.deleteSingleTests(data);
     } catch (err) {
       res = {
         status: 'error',

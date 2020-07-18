@@ -20,11 +20,12 @@ class SingleTestsService extends Service {
     return res;
   }
 
-  async delete(id) {
+  async deleteSingleTests(testIds) {
+    const {ids} = testIds
     let res = null;
     await this.ctx.model.SingleTests.destroy({
       where: {
-        id,
+        id:ids
       },
     }).then(() => {
       res = {
@@ -59,8 +60,17 @@ class SingleTestsService extends Service {
   async getSingleTests(params) {
     const { ctx } = this;
     let res = [];
-    const { current = 1, pageSize = 10 } = params;
+    const { current = 1, pageSize = 10,testNo,subject,testFrom,testYear } = params;
+    const whereParams = {testNo,subject,testFrom,testYear}
+    for(let i in whereParams) {
+      if (whereParams[i] === '' || whereParams[i] === null || whereParams[i] === undefined) {
+        delete whereParams[i]
+      }
+    }
+    
     await ctx.model.SingleTests.findAndCountAll({
+      order: [['updatedAt', 'DESC']],
+      where: whereParams,
       limit: pageSize,
       offset: pageSize * (current - 1),
     }).then(result => {
