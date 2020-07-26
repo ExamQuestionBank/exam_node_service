@@ -34,6 +34,10 @@ class LoginController extends Controller {
             data: {
               access_token,
               username: user.username,
+              user:{
+                id: user.id,
+                username: user.username,
+              }
             },
           };
         } catch (err) {
