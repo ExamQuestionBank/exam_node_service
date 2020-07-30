@@ -15,10 +15,10 @@ module.exports = appInfo => {
   config.sequelize = {
     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
     database: 'TESTDB',
-    host: 'localhost',
+    host: '47.104.100.102',
     port: '3306',
     username: 'root',
-    password: '123456',
+    password: 'xtt123456',
   };
 
   config.jwt = {
