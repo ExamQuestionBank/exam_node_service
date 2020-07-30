@@ -50,6 +50,22 @@ class LoginController extends Controller {
     }
     this.ctx.body = res;
   }
+  
+  async getCurrentUser () {
+    let res = null;
+    const { id } = this.ctx.request.body;
+    try {
+      res = await this.ctx.service.login.findUserNameById(id);
+      res.avatar = 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png'
+    } catch (err) {
+      res = {
+        status: 'error',
+        message: err,
+      };
+    }
+
+    this.ctx.body = res
+  }
 }
 
 module.exports = LoginController;

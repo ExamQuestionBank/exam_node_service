@@ -23,6 +23,13 @@ class LoginService extends Service {
     return TOKENINFOR;
   }
 
+  async findUserNameById(id) {
+    const USER = await this.ctx.model.User.findOne({
+      where: { id },
+    });
+    return USER;
+  }
+
 }
 
 module.exports = LoginService;
