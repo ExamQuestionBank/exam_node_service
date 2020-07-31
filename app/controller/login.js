@@ -56,7 +56,6 @@ class LoginController extends Controller {
     const { id } = this.ctx.request.body;
     try {
       res = await this.ctx.service.login.findUserNameById(id);
-      res.avatar = 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png'
     } catch (err) {
       res = {
         status: 'error',
