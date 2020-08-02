@@ -17,4 +17,4 @@ create table tb_single_tests (
   updated_at datetime DEFAULT null COMMENT 'updated time',
   version varchar(100) default null comment 'version',
   primary key (id)
-)engine=InnoDB AUTO_INCREMENT=1 comment 'tb_single_tests';
+)engine=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 comment 'tb_single_tests';
