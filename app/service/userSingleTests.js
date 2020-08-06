@@ -40,6 +40,24 @@ class UserSingleTests extends Service {
     })
     return res;
   }
+
+  async getUserFinishedTest(params) {
+    const {ctx} = this;
+    let res = []
+    await ctx.model.UserSingleTests.findAll({
+      where:{
+        userId:params.userId,
+      }
+    }).then(reslut => {
+      res = reslut
+    }).catch(err => {
+      res = {
+        status: 'error',
+        message: err,
+      };
+    })
+    return res
+  }
 }
 
 module.exports = UserSingleTests;

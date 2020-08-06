@@ -39,6 +39,37 @@ class UserSingleTestsController extends Controller {
     }
     this.ctx.body = res;
   }
+
+  async getUserFinishedTest () {
+    let res = null;
+    const data = this.ctx.request.body;
+    try {
+      let allSingleTests = await this.ctx.service.singleTests.getSingleTests(data)
+      let userFinishedTest = await this.ctx.service.userSingleTests.getUserFinishedTest(data.params);
+      let rows = []
+      if (data.params.todo) {
+        rows = allSingleTests.rows.filter(item => {
+          return !userFinishedTest.find(o => o.testId === item.id)
+        })
+      } else {
+        rows = allSingleTests.rows.filter(item => {
+          return userFinishedTest.find(o => o.testId === item.id)
+        })
+      }
+      res = {
+        data: rows,
+        total: rows.length,
+        success: true,
+      };
+
+    } catch (err) {
+      res = {
+        status: 'error',
+        message: err,
+      };
+    }
+    this.ctx.body = res;
+  }
 }
 
 module.exports = UserSingleTestsController;
