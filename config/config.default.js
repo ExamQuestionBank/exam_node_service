@@ -36,6 +36,11 @@ module.exports = appInfo => {
   // add your middleware config here
   config.middleware = [];
 
+  config.wechat = {
+    appid: 'wx5ac4dc49febea98c',
+    appSecret: '975b213405383cd0a277c44ceb354b8e'
+  };
+
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',

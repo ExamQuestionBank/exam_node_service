@@ -8,6 +8,7 @@ module.exports = app => {
   const USER = DB.defineModel(app, 'tb_user', {
     username: { type: STRING, unique: true, allowNull: false }, // 用户名
     password: { type: STRING, allowNull: false }, // 密码
+    openid: { type: STRING, allowNull: false }, // openid
   });
 
   return USER;

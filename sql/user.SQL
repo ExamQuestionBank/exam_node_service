@@ -15,3 +15,6 @@ create table tb_user (
 
 insert into tb_user(username,password)
 value('admin','123456');
+
+-- 增加字段
+ALTER TABLE tb_user ADD openid char(30);

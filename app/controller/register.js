@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-07-05 08:40:07
+ * @LastEditTime: 2020-08-12 17:47:06
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /exam_node_service/app/controller/register.js
+ */
 'use strict';
 
 const Controller = require('egg').Controller;
