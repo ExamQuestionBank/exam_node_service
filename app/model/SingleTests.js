@@ -18,6 +18,7 @@ module.exports = app => {
     },
     question: { type: STRING, allowNull: false }, // 题目内容
     answer: { type: STRING, allowNull: false }, // 答案
+    answerAnalysis: { type: STRING, allowNull: true }, // 答案解析
     answerA: { type: STRING, allowNull: false, field: 'answer_a' },
     answerB: { type: STRING, allowNull: false, field: 'answer_b' },
     answerC: { type: STRING, allowNull: false, field: 'answer_c' },
