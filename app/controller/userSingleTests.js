@@ -44,12 +44,15 @@ class UserSingleTestsController extends Controller {
     let res = null;
     const data = this.ctx.request.body;
     try {
-      let allSingleTests = await this.ctx.service.singleTests.getSingleTests(data)
+      // 查询所有的题目
+      let allSingleTests = await this.ctx.service.singleTests.getSingleTests(data.params)
+      // 查询出用户做过的题目
       let userFinishedTest = await this.ctx.service.userSingleTests.getUserFinishedTest(data.params);
       let rows = []
+      // todo做分页
       if (data.params.todo) {
         rows = allSingleTests.rows.filter(item => {
-          return !userFinishedTest.find(o => o.testId === item.id)
+          return !userFinishedTest.find(o => item.id === o.testId)
         })
       } else {
         rows = allSingleTests.rows.filter(item => {
@@ -58,7 +61,7 @@ class UserSingleTestsController extends Controller {
       }
       res = {
         data: rows,
-        total: rows.length,
+        total: allSingleTests.count,
         success: true,
       };
 
