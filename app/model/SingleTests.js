@@ -7,6 +7,7 @@ module.exports = app => {
 
   const SINGLETESTS = DB.defineModel(app, 'tb_single_tests', {
     subject: { type: STRING, allowNull: false }, // 考试科目
+    section: { type: STRING, allowNull: false }, // 试题板块
     testYear: {
       type: STRING, allowNull: false, field: 'test_year',
     },

@@ -14,15 +14,8 @@ create table tb_single_tests (
   answer_d text default null comment '答案d',
   answer varchar(40) default null comment '答案',
   answer_analysis text default null comment '答案解析',
-  section text default null comment '试题板块',
   created_at datetime DEFAULT null COMMENT 'created time',
   updated_at datetime DEFAULT null COMMENT 'updated time',
   version varchar(100) default null comment 'version',
   primary key (id)
-)engine=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 comment 'tb_single_tests';
-
--- 2020-08-16添加字段
-alter table tb_single_tests add answer_analysis text default null ;
-
--- 2020-09-09添加字段
-alter table tb_single_tests add section text default null ;
+)engine=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 comment 'tb_multiple_tests';
