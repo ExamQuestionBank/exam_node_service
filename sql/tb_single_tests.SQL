@@ -26,3 +26,6 @@ alter table tb_single_tests add answer_analysis text default null ;
 
 -- 2020-09-09添加字段
 alter table tb_single_tests add section text default null ;
+
+-- 2020-09-12添加校对状态字段
+alter table tb_single_tests add checked int(1) default 0;
