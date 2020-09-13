@@ -56,7 +56,7 @@ class WechatController extends Controller {
     const { ctx } = this;
     const user = await ctx.service.wecaht.findUserByOpenid(openid);
     if (!user) {
-      this.wechatRegiste(openid)
+      return this.wechatRegiste(openid)
     } else {
       return this.login (openid)
     }
@@ -65,7 +65,7 @@ class WechatController extends Controller {
   async wechatRegiste (openid) {
     const results = await this.service.wecaht.wechatRegiste(openid);
     if (results.code === 200) {
-      this.login (openid)
+      return this.login (openid)
     } else {
       this.ctx.body = results;
     }
@@ -80,20 +80,22 @@ class WechatController extends Controller {
     const user = await ctx.service.wecaht.findUserByOpenid(openid);
     const uid = user.id;
     try {
-      await this.ctx.service.login.saveToken({ uid, access_token, refresh_token });
-      res = {
-        status: 'ok',
-        code: 200,
-        data: {
-          access_token,
-          username: user.username,
-          user:{
-            id: user.id,
+      let saveTokenRes = await this.ctx.service.login.saveToken({ uid, access_token, refresh_token });
+      if (saveTokenRes) {
+        res = {
+          status: 'ok',
+          code: 200,
+          data: {
+            access_token,
             username: user.username,
-            openid: user.openid
-          }
-        },
-      };
+            user:{
+              id: user.id,
+              username: user.username,
+              openid: user.openid
+            }
+          },
+        };
+      }
     } catch (err) {
       res = {
         code: 10000,
