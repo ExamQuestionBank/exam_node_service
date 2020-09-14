@@ -24,5 +24,8 @@ module.exports = async app => {
   router.post('/api/singleTests/deleteTests', IsLogin, controller.singleTests.deleteSingleTests);
   router.post('/api/userSingleTests/saveOrUpdate', IsLogin, controller.userSingleTests.saveOrUpdate);
   router.post('/api/userSingleTests/getUserSingleTest', IsLogin, controller.userSingleTests.getUserSingleTest);
-  router.post('/api/userSingleTests/getUserFinishedTest', IsLogin, controller.userSingleTests.getUserFinishedTest)
+  router.post('/api/userSingleTests/getUserFinishedTest', IsLogin, controller.userSingleTests.getUserFinishedTest);
+  router.post('/api/multipleTests/saveOrUpdate', IsLogin, controller.multipleTests.saveOrUpdate);
+  router.post('/api/multipleTests/getMultipleTests', IsLogin, controller.multipleTests.getMultipleTests);
+  router.post('/api/multipleTests/deleteTests', IsLogin, controller.multipleTests.deleteMultipleTests);
 };

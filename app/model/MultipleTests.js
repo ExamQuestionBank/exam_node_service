@@ -7,16 +7,24 @@ module.exports = app => {
 
   const MULTIPLETESTS = DB.defineModel(app, 'tb_multiple_tests', {
     subject: { type: STRING, allowNull: false }, // 考试科目
-    test_year: { type: STRING, allowNull: false }, // 出题年份
-    test_form: { type: STRING, allowNull: false }, // 出自（来源）
-    test_no: { type: STRING, allowNull: false }, // 试题编号
+    section: { type: STRING, allowNull: false }, // 试题板块
+    testYear: {
+      type: STRING, allowNull: false, field: 'test_year',
+    },
+    testFrom: {
+      type: STRING, allowNull: false, field: 'test_from',
+    },
+    testNo: {
+      type: STRING, allowNull: false, field: 'test_no',
+    },
     question: { type: STRING, allowNull: false }, // 题目内容
-    answer_a: { type: STRING, allowNull: false }, // 选项A
-    answer_b: { type: STRING, allowNull: false }, // 选项B
-    answer_c: { type: STRING, allowNull: false }, // 选项C
-    answer_d: { type: STRING, allowNull: false }, // 选项D
     answer: { type: STRING, allowNull: false }, // 答案
-
+    answerAnalysis: { type: STRING, allowNull: true }, // 答案解析
+    checked:{ type: Number, allowNull: true},
+    answerA: { type: STRING, allowNull: false, field: 'answer_a' },
+    answerB: { type: STRING, allowNull: false, field: 'answer_b' },
+    answerC: { type: STRING, allowNull: false, field: 'answer_c' },
+    answerD: { type: STRING, allowNull: false, field: 'answer_d' },
   });
   return MULTIPLETESTS;
 };
