@@ -18,7 +18,7 @@ module.exports = appInfo => {
     host: 'localhost',
     port: '3306',
     username: 'root',
-    password: 'xtt123456',
+    password: 'Xtt123456',
   };
 
   config.jwt = {
@@ -38,7 +38,7 @@ module.exports = appInfo => {
 
   config.wechat = {
     appid: 'wx5ac4dc49febea98c',
-    appSecret: '975b213405383cd0a277c44ceb354b8e'
+    appSecret: '975b213405383cd0a277c44ceb354b8e',
   };
 
   // add your user config here
