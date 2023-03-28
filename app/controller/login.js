@@ -6,7 +6,7 @@ const { cryptoMd5 } = require('../extend/helper');
 class LoginController extends Controller {
   async userLogin() {
     const { ctx } = this;
-    const { username, password } = this.ctx.request.body;
+    const { username, password, type } = this.ctx.request.body;
     const keys = this.config.keys;
     let res = null;
     const user = await ctx.service.login.findUserName(username);
@@ -17,7 +17,7 @@ class LoginController extends Controller {
       };
     } else {
       const newPass = await cryptoMd5(password, keys);
-      if (user.password !== newPass) {
+      if (type !== 'account' && user.password !== newPass) {
         res = {
           code: 10000,
           message: '密码错误',
@@ -34,10 +34,10 @@ class LoginController extends Controller {
             data: {
               access_token,
               username: user.username,
-              user:{
+              user: {
                 id: user.id,
                 username: user.username,
-              }
+              },
             },
           };
         } catch (err) {
@@ -50,8 +50,8 @@ class LoginController extends Controller {
     }
     this.ctx.body = res;
   }
-  
-  async getCurrentUser () {
+
+  async getCurrentUser() {
     let res = null;
     const { id } = this.ctx.request.body;
     try {
@@ -63,7 +63,7 @@ class LoginController extends Controller {
       };
     }
 
-    this.ctx.body = res
+    this.ctx.body = res;
   }
 }
 

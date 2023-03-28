@@ -7,6 +7,7 @@ create table tb_user (
   password varchar(100) default null comment '密码',
   type varchar(50) DEFAULT null COMMENT '登录的类型',
   wx_openid varchar(100) DEFAULT null COMMENT '微信用户ID',
+  openid char(30) DEFAULT null COMMENT '用户openID',
   created_at datetime DEFAULT null COMMENT 'created time',
   updated_at datetime DEFAULT null COMMENT 'updated time',
   version varchar(100) default null comment 'version',
